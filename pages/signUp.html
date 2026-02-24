@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../styles/style.css">
+  <title>Registrarse | olive ATM Simulator</title>
+  <link rel="shortcut icon" href="../assets/olive-favicon.ico" type="image/x-icon">
+</head>
+<body>
+  <h1>Registrarse</h1>
+  <section class="log-inputs">
+    <label for="names">Nombre/s:</label>
+    <input type="text" name="names" id="nombres">
+    <label for="surnames">Apellido/s:</label>
+    <input type="text" name="surnames" id="apellidos">
+    <label for="age">Edad:</label>
+    <input type="text" name="age" id="edad">
+    <label for="dni">Número de documento de identidad (sin puntos, comas, ni guiones):</label>
+    <input type="text" name="dni" id="dni">
+    <label for="email">Email:</label>
+    <input type="email" name="email" id="emailSU">
+    <label for="pin">PIN:</label>
+    <input type="password" name="pin" id="pinSU">
+    <label for="gender">Género:</label>
+    <select name="gender" id="genero">
+      <option value="-">-</option>
+      <option value="Femenino">Femenino</option>
+      <option value="Masculino">Masculino</option>
+      <option value="prefiero no decirlo">Prefiero no decirlo</option>
+    </select>
+    <input type="submit" value="Registrarse" id="registrarse">
+  </section>
+  <script src="../js/log.js"></script>
+</body>
+</html>

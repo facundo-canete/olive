@@ -1,0 +1,18 @@
+@mixin flex($direction, $justify: null, $align: null) {
+  display: flex;
+  flex-direction: $direction;
+
+  @if $justify != null {
+    justify-content: $justify;
+  };
+
+  @if $align != null {
+    align-items: $align;
+  };
+};
+
+@mixin grid($rows, $columns) {
+  display: grid;
+  grid-template-rows: $rows;
+  grid-template-columns: $columns;
+};

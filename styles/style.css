@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* font-family: "Nunito", sans-serif */
+html body header {
+  padding-top: 0.5em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+html body main {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5em;
+}
+html body main button {
+  width: 25em;
+  height: 25em;
+  border-radius: 32px;
+  background-color: #809766;
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: 1fr;
+}
+html body main button:hover {
+  cursor: pointer;
+}
+html body main button figure {
+  width: 25em;
+  height: 14em;
+}
+html body main button figure img {
+  width: 14em;
+}
+html body main button p {
+  font-family: "Nunito", sans-serif;
+  font-size: 3em;
+}
+
+html {
+  font-family: "Nunito", sans-serif;
+  background-color: #f6f1e7;
+}
+html body main {
+  height: 96vh;
+}
+
+html body h1 {
+  text-align: center;
+}
+html body .log-inputs {
+  height: 93vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+html body .log-inputs input {
+  width: 40em;
+  margin-bottom: 1em;
+}
+html body .log-inputs select {
+  width: 40em;
+}
+html body .log-inputs input[type=submit] {
+  margin-top: 1em;
+}
+
+/*# sourceMappingURL=style.css.map */

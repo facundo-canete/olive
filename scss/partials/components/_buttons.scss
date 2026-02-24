@@ -1,0 +1,37 @@
+@use '../utilities/variables';
+@use '../utilities/mixins';
+
+html {
+  body {
+    main {
+      @include mixins.flex(row, center, center);
+      gap: 5em;
+
+      button {
+        width: 25em;
+        height: 25em;
+        border-radius: 32px;
+        background-color: variables.$accent-primary;
+        @include mixins.grid(repeat(2, 1fr), 1fr);
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        figure {
+          width: 25em;
+          height: 14em;
+
+          img {
+            width: 14em;
+          }
+        }
+
+        p {
+          font-family: variables.$font;
+          font-size: 3em;
+        }
+      }
+    }
+  }
+}

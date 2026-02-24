@@ -1,0 +1,12 @@
+@use '../utilities/mixins';
+@use '../utilities/variables';
+
+html {
+  font-family: variables.$font;
+  background-color: variables.$bg-color;
+  body {
+    main {
+      height: 96vh;
+    }
+  }
+}
