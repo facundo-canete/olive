@@ -3,26 +3,28 @@
 
 html {
   body {
-    h1 {
-      text-align: center;
-    }
-    
-    .log-inputs {
-      height: 93vh;
-      @include mixins.flex(column, center, center);
-      
-      input {
-        width: 40em;
-        margin-bottom: 1em;
+    main {
+      h1 {
+        text-align: center;
       };
       
-      select {
-        width: 40em;
-      };
+      .log-inputs {
+        height: 93vh;
+        @include mixins.flex(column, center, center);
+        
+        input {
+          width: 40em;
+          margin-bottom: 1em;
+        };
+        
+        select {
+          width: 40em;
+        };
 
-      input[type="submit"] {
-        margin-top: 1em;
-      }
-    }
-  }
-}
+        input[type="submit"] {
+          margin-top: 1em;
+        };
+      };
+    };
+  };
+};

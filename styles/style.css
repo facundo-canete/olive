@@ -51,24 +51,24 @@ html body main {
   height: 96vh;
 }
 
-html body h1 {
+html body main h1 {
   text-align: center;
 }
-html body .log-inputs {
+html body main .log-inputs {
   height: 93vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-html body .log-inputs input {
+html body main .log-inputs input {
   width: 40em;
   margin-bottom: 1em;
 }
-html body .log-inputs select {
+html body main .log-inputs select {
   width: 40em;
 }
-html body .log-inputs input[type=submit] {
+html body main .log-inputs input[type=submit] {
   margin-top: 1em;
 }
 

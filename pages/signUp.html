@@ -15,22 +15,23 @@
     <label for="surnames">Apellido/s:</label>
     <input type="text" name="surnames" id="apellidos">
     <label for="age">Edad:</label>
-    <input type="text" name="age" id="edad">
+    <input type="number" name="age" id="edad">
     <label for="dni">Número de documento de identidad (sin puntos, comas, ni guiones):</label>
-    <input type="text" name="dni" id="dni">
+    <input type="number" name="dni" id="dni">
     <label for="email">Email:</label>
     <input type="email" name="email" id="emailSU">
     <label for="pin">PIN:</label>
-    <input type="password" name="pin" id="pinSU">
+    <input type="number" name="pin" id="pinSU">
     <label for="gender">Género:</label>
     <select name="gender" id="genero">
       <option value="-">-</option>
       <option value="Femenino">Femenino</option>
       <option value="Masculino">Masculino</option>
-      <option value="prefiero no decirlo">Prefiero no decirlo</option>
+      <option value="Prefiero no decirlo">Prefiero no decirlo</option>
     </select>
     <input type="submit" value="Registrarse" id="registrarse">
   </section>
-  <script src="../js/log.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="../js/signUp.js"></script>
 </body>
 </html>

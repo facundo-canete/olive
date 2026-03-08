@@ -1,0 +1,12 @@
+[
+  {
+    "nombres": "asd", 
+    "apellidos": "asd", 
+    "edad": 22, 
+    "dni": 90123456, 
+    "email": "asd", 
+    "pin": 1234, 
+    "genero": "Masculino", 
+    "saldo": 10000000
+  }
+]
