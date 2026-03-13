@@ -52,14 +52,18 @@ class Usuario {
     const usuariosRegistradosRecuperados = JSON.parse(localStorage.getItem("usuariosRegistrados"));
     if(usuariosRegistradosRecuperados.some(usuarioDuplicado => Number(usuarioDuplicado.dni) === Number(this.dni))) {
       console.warn(`El usuario escribió "${this.dni}" como DNI y ya se encuentra registrado.`);
+      console.info(`Se redirecciona al usuario al inicio de sesión.`);
       Swal.fire({
         title: "Atención",
         icon: "warning",
-        text: "Usted ya tiene una cuenta registrada con este número de DNI. Por favor, inicie sesión."
+        text: "Usted ya tiene una cuenta registrada con este número de DNI. Por favor, inicie sesión.",
+        showConfirmButton: true
+      }).then((result) => {
+        if(result.isConfirmed) {
+          window.location.href = "./logIn.html";
+          return true;
+        }
       });
-      console.info(`Se redirecciona al usuario al inicio de sesión.`);
-      window.location.href = "./logIn.html";
-      return true;
     } else {
       return false;
     };
@@ -70,7 +74,8 @@ class Usuario {
       Swal.fire({
         title: "Atención",
         icon: "warning",
-        text: "Usted dejó vacío el campo de los nombres y no es válido. Por favor, ingrese su/s nombre/s correctamente."
+        text: "Usted dejó vacío el campo de los nombres y no es válido. Por favor, ingrese su/s nombre/s correctamente.",
+        showConfirmButton: true
       });
       return false;
     } else if(this.apellidos === "") {
@@ -78,7 +83,8 @@ class Usuario {
       Swal.fire({
         title: "Atención",
         icon: "warning",
-        text: "Usted dejó vacío el campo de los apellidos y no es válido. Por favor, ingrese su/s apellido/s correctamente."
+        text: "Usted dejó vacío el campo de los apellidos y no es válido. Por favor, ingrese su/s apellido/s correctamente.",
+        showConfirmButton: true
       });
       return false;
     } else if(this.edad === "") {
@@ -86,7 +92,8 @@ class Usuario {
       Swal.fire({
         title: "Atención",
         icon: "warning",
-        text: "Usted ingresó un valor que no es válido. Por favor, ingrese su edad correctamente."
+        text: "Usted ingresó un valor que no es válido. Por favor, ingrese su edad correctamente.",
+        showConfirmButton: true
       });
       return false;
     } else if(this.edad < 18) {
@@ -94,7 +101,8 @@ class Usuario {
       Swal.fire({
         title: "Atención",
         icon: "warning",
-        text: "Usted es menor de edad. Para registrarse en nuestro sistema tiene que ser mayor de edad."
+        text: "Usted es menor de edad. Para registrarse en nuestro sistema tiene que ser mayor de edad.",
+        showConfirmButton: true
       });
       return false;
     } else if(this.dni === "") {
@@ -102,7 +110,8 @@ class Usuario {
       Swal.fire({
         title: "Atención",
         icon: "warning",
-        text: "Usted ingresó un valor que no es válido. Por favor, ingrese su DNI correctamente."
+        text: "Usted ingresó un valor que no es válido. Por favor, ingrese su DNI correctamente.",
+        showConfirmButton: true
       });
       return false;
     } else if(this.dni.length > 8) {
@@ -110,7 +119,8 @@ class Usuario {
       Swal.fire({
         title: "Atención",
         icon: "warning",
-        text: "Usted introdujo un número de DNI que no es válido. Por favor, ingrese su DNI correctamente."
+        text: "Usted introdujo un número de DNI que no es válido. Por favor, ingrese su DNI correctamente.",
+        showConfirmButton: true
       });
       return false;
     } else if(this.email === "") {
@@ -118,7 +128,8 @@ class Usuario {
       Swal.fire({
         title: "Atención",
         icon: "warning",
-        text: "Usted dejó vacío el campo del email y no es válido. Por favor, ingrese su email correctamente."
+        text: "Usted dejó vacío el campo del email y no es válido. Por favor, ingrese su email correctamente.",
+        showConfirmButton: true
       });
       return false;
     } else if(this.pin === "") {
@@ -126,7 +137,8 @@ class Usuario {
       Swal.fire({
         title: "Atención",
         icon: "warning",
-        text: "Usted ingresó un valor que no es válido. Por favor, ingrese su PIN correctamente."
+        text: "Usted ingresó un valor que no es válido. Por favor, ingrese su PIN correctamente.",
+        showConfirmButton: true
       });
       return false;
     } else if(this.pin.length < 4) {
@@ -134,7 +146,8 @@ class Usuario {
       Swal.fire({
         title: "Atención",
         icon: "warning",
-        text: "Usted ingresó un PIN demasiado corto. Por favor, ingrese su PIN con 4 dígitos como mínimo."
+        text: "Usted ingresó un PIN demasiado corto. Por favor, ingrese su PIN con 4 dígitos como mínimo.",
+        showConfirmButton: true
       });
       return false;
     } else if(this.genero === "-") {
@@ -142,7 +155,8 @@ class Usuario {
       Swal.fire({
         title: "Atención",
         icon: "warning",
-        text: "Usted dejó vacío el campo de su género y no es válido. Por favor, corrija su respuesta."
+        text: "Usted dejó vacío el campo de su género y no es válido. Por favor, corrija su respuesta.",
+        showConfirmButton: true
       });
       return false;
     } else {
@@ -155,23 +169,35 @@ class Usuario {
       Swal.fire({
         title: "Usted se registró correctamente",
         icon: "success",
-        text: `Bienvenida, ${this.nombres}. Porque somos muy generosos (y todavía no tenemos la opción de depositar dinero disponible), le damos un bono de bienvenida de $1 000 000. Que los disfrute.`
+        text: `Bienvenida, ${this.nombres}. Porque somos muy generosos (y todavía no tenemos la opción de depositar dinero disponible), le damos un bono de bienvenida de $1 000 000. Que los disfrute.`,
+        showConfirmButton: true
+      }).then((result) => {
+        if(result.isConfirmed) {
+          window.location.href = "./logIn.html";
+        };
       });
-      window.location.href = "./logIn.html";
     } else if(this.genero === "Masculino") {
       Swal.fire({
         title: "Usted se registró correctamente",
         icon: "success",
-        text: `Bienvenido, ${this.nombres}. Porque somos muy generosos (y todavía no tenemos la opción de depositar dinero disponible), le damos un bono de bienvenida de $1 000 000. Que los disfrute.`
+        text: `Bienvenido, ${this.nombres}. Porque somos muy generosos (y todavía no tenemos la opción de depositar dinero disponible), le damos un bono de bienvenida de $1 000 000. Que los disfrute.`,
+        showConfirmButton: true
+      }).then((result) => {
+        if(result.isConfirmed) {
+          window.location.href = "./logIn.html";
+        };
       });
-      window.location.href = "./logIn.html";
     } else {
       Swal.fire({
         title: "Usted se registró correctamente",
         icon: "success",
-        text: `Le damos la bienvenida, ${this.nombres}. Porque somos muy generosos (y todavía no tenemos la opción de depositar dinero disponible), le damos un bono de bienvenida de $1 000 000. Que los disfrute.`
+        text: `Le damos la bienvenida, ${this.nombres}. Porque somos muy generosos (y todavía no tenemos la opción de depositar dinero disponible), le damos un bono de bienvenida de $1 000 000. Que los disfrute.`,
+        showConfirmButton: true
+      }).then((result) => {
+        if(result.isConfirmed) {
+          window.location.href = "./logIn.html";
+        };
       });
-      window.location.href = "./logIn.html";
     };
   };
 };
