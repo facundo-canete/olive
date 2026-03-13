@@ -1,11 +1,12 @@
 let usuariosRegistrados = [];
 let usuariosNuevos = [];
+
 let botonRegistrarse = document.querySelector('#registrarse');
 botonRegistrarse.disabled = true;
 
 async function conseguirLista() {
   try {
-    console.info("Proceso de obtención de base de datos inicializado.");
+    console.info("Proceso de obtención de base de datos inicializado."); // Los mensajes en consola son para informar todo lo que va ocurriendo entre el usuario y el sistema. No están dirigidos al usuario.
     const listaJSONSU = await fetch("../usuariosRegistrados.json");
     const listaJSSU = await listaJSONSU.json();
     
@@ -14,6 +15,17 @@ async function conseguirLista() {
     console.info("Lista de usuarios obtenida correctamente.")
     botonRegistrarse.disabled = false;
   } catch(error) {
+    Swal.fire({
+      title: "Error",
+      icon: "error",
+      text: "Hubo un error al cargar la base de datos. Por favor, recargue la página o inténtelo más tarde.",
+      showConfirmButton: true,
+      confirmButtonText: "Recargar"
+    }).then((result) => {
+      if(result.isConfirmed) {
+        window.location.href = "./logIn.html";
+      };
+    });
     throw new Error("No se pudo conseguir la lista de usuarios registrados.");
   } finally {
     console.info("Proceso de obtención de base de datos finalizado.");
@@ -72,7 +84,7 @@ class Usuario {
   };
   revisarDatos() {
     if(this.nombres === "") {
-      console.warn(`El usuario escribió "${this.nombres}" como nombre y falló en registrarse.`); // Los mensajes en consola son para informar todo lo que va ocurriendo entre el usuario y el sistema. No están dirigidos al usuario.
+      console.warn(`El usuario escribió "${this.nombres}" como nombre y falló en registrarse.`);
       Swal.fire({
         title: "Atención",
         icon: "warning",

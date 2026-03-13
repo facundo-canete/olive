@@ -1,8 +1,11 @@
 localStorage.removeItem("usuarioEnSesion");
+
 usuariosRegistrados = [];
 const usuariosNuevos = JSON.parse(localStorage.getItem("usuariosNuevos"));
+
 const botonIniciarSesion = document.querySelector("#iniciarSesion");
 botonIniciarSesion.disabled = true;
+
 const dniLI = document.querySelector("#dniLI");
 const pinLI = document.querySelector("#pinLI");
 
@@ -17,6 +20,17 @@ async function conseguirLista() {
     console.info("Lista de usuarios obtenida correctamente.")
     botonIniciarSesion.disabled = false;
   } catch(error) {
+    Swal.fire({
+      title: "Error",
+      icon: "error",
+      text: "Hubo un error al cargar la base de datos. Por favor, recargue la página o inténtelo más tarde.",
+      showConfirmButton: true,
+      confirmButtonText: "Recargar"
+    }).then((result) => {
+      if(result.isConfirmed) {
+        window.location.href = "./logIn.html";
+      };
+    });
     throw new Error("No se pudo conseguir la lista de usuarios registrados.");
   } finally {
     console.info("Proceso de obtención de base de datos finalizado.");
