@@ -1,14 +1,15 @@
 let usuariosRegistrados = [];
+let usuariosNuevos = [];
 let botonRegistrarse = document.querySelector('#registrarse');
 botonRegistrarse.disabled = true;
 
 async function conseguirLista() {
   try {
     console.info("Proceso de obtención de base de datos inicializado.");
-    const listaJSON = await fetch("../usuariosRegistrados.json");
-    const listaJS = await listaJSON.json();
+    const listaJSONSU = await fetch("../usuariosRegistrados.json");
+    const listaJSSU = await listaJSONSU.json();
     
-    usuariosRegistrados = listaJS;
+    usuariosRegistrados = listaJSSU;
     localStorage.setItem("usuariosRegistrados", JSON.stringify(usuariosRegistrados));
     console.info("Lista de usuarios obtenida correctamente.")
     botonRegistrarse.disabled = false;
@@ -50,7 +51,8 @@ class Usuario {
   };
   revisarDuplicado() {
     const usuariosRegistradosRecuperados = JSON.parse(localStorage.getItem("usuariosRegistrados"));
-    if(usuariosRegistradosRecuperados.some(usuarioDuplicado => Number(usuarioDuplicado.dni) === Number(this.dni))) {
+    const usuariosNuevosRecuperados = JSON.parse(localStorage.getItem("usuariosNuevos"));
+    if(usuariosRegistradosRecuperados.some(usuarioRDuplicado => Number(usuarioRDuplicado.dni) === Number(this.dni)) || usuariosNuevosRecuperados.some(usuarioNDuplicado => Number(usuarioNDuplicado.dni) === Number(this.dni))) {
       console.warn(`El usuario escribió "${this.dni}" como DNI y ya se encuentra registrado.`);
       console.info(`Se redirecciona al usuario al inicio de sesión.`);
       Swal.fire({
@@ -207,9 +209,8 @@ botonRegistrarse.addEventListener("click", () => {
   usuarioNuevo.mostrarDatos();
 
   if(usuarioNuevo.revisarDuplicado() === false && usuarioNuevo.revisarDatos() === true) {
-    localStorage.removeItem("usuariosRegistrados");
-    usuariosRegistrados.push(usuarioNuevo);
-    localStorage.setItem("usuariosRegistrados", JSON.stringify(usuariosRegistrados));
+    usuariosNuevos.push(usuarioNuevo);
+    localStorage.setItem("usuariosNuevos", JSON.stringify(usuariosNuevos));
     usuarioNuevo.darBienvenida();
   };
 });
