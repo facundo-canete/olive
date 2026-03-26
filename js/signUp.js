@@ -183,7 +183,7 @@ class Usuario {
       Swal.fire({
         title: "Usted se registró correctamente",
         icon: "success",
-        text: `Bienvenida, ${this.nombres}. Porque somos muy generosos (y todavía no tenemos la opción de depositar dinero disponible), le damos un bono de bienvenida de $1 000 000. Que los disfrute.`,
+        text: `Bienvenida, ${this.nombres}. Porque somos muy generosos (y todavía no tenemos la opción de depositar dinero disponible), le damos un bono de bienvenida de $1.000.000. Que los disfrute.`,
         showConfirmButton: true
       }).then((result) => {
         if(result.isConfirmed) {
@@ -194,7 +194,7 @@ class Usuario {
       Swal.fire({
         title: "Usted se registró correctamente",
         icon: "success",
-        text: `Bienvenido, ${this.nombres}. Porque somos muy generosos (y todavía no tenemos la opción de depositar dinero disponible), le damos un bono de bienvenida de $1 000 000. Que los disfrute.`,
+        text: `Bienvenido, ${this.nombres}. Porque somos muy generosos (y todavía no tenemos la opción de depositar dinero disponible), le damos un bono de bienvenida de $1.000.000. Que los disfrute.`,
         showConfirmButton: true
       }).then((result) => {
         if(result.isConfirmed) {
@@ -205,7 +205,7 @@ class Usuario {
       Swal.fire({
         title: "Usted se registró correctamente",
         icon: "success",
-        text: `Le damos la bienvenida, ${this.nombres}. Porque somos muy generosos (y todavía no tenemos la opción de depositar dinero disponible), le damos un bono de bienvenida de $1 000 000. Que los disfrute.`,
+        text: `Le damos la bienvenida, ${this.nombres}. Porque somos muy generosos (y todavía no tenemos la opción de depositar dinero disponible), le damos un bono de bienvenida de $1.000.000. Que los disfrute.`,
         showConfirmButton: true
       }).then((result) => {
         if(result.isConfirmed) {

@@ -5,8 +5,8 @@ const usuariosRegistradosRecuperados = JSON.parse(localStorage.getItem("usuarios
 const usuariosNuevosRecuperados = JSON.parse(localStorage.getItem("usuariosNuevos"));
 const datosUsuarioEnSesionRecuperados = JSON.parse(localStorage.getItem("datosUsuarioEnSesion"));
 let usuarioEnSesion = undefined;
-if(datosUsuarioEnSesionRecuperados.antiguedad === "viejo") {
-  usuarioEnSesion = usuariosRegistrados[datosUsuarioEnSesion.indice];
+if(datosUsuarioEnSesionRecuperados.antiguedad === "registrado") {
+  usuarioEnSesion = usuariosRegistradosRecuperados[datosUsuarioEnSesionRecuperados.indice];
 } else if(datosUsuarioEnSesionRecuperados.antiguedad === "nuevo") {
   usuarioEnSesion = usuariosNuevosRecuperados[datosUsuarioEnSesionRecuperados.indice];
 };

@@ -3,7 +3,7 @@ const usuariosRegistrados = JSON.parse(localStorage.getItem("usuariosRegistrados
 const usuariosNuevos = JSON.parse(localStorage.getItem("usuariosNuevos"));
 const datosUsuarioEnSesion = JSON.parse(localStorage.getItem("datosUsuarioEnSesion"));
 let usuarioEnSesion = {};
-if(datosUsuarioEnSesion.antiguedad === "viejo") {
+if(datosUsuarioEnSesion.antiguedad === "registrado") {
   usuarioEnSesion = usuariosRegistrados[datosUsuarioEnSesion.indice];
 } else if(datosUsuarioEnSesion.antiguedad === "nuevo") {
   usuarioEnSesion = usuariosNuevos[datosUsuarioEnSesion.indice];
@@ -55,7 +55,15 @@ function retiroDeDinero() {
   };
   
   let montoIngresado = verificarDatosRetiro(); // Va a tomar el valor "monto". Este va a ser el valor que se va a usar el función final de esta operación.
-    
+  
+  function mostrarNuevoSaldo() {
+    Swal.fire({
+      icon: "info",
+      title: "Su saldo es:",
+      text: `$${saldoUsuarioEnSesion}`
+    });
+  };
+
   function retirarDinero(montoARetirar) {
     const billetes20k = parseInt(montoARetirar / 20000);
         
@@ -69,10 +77,28 @@ function retiroDeDinero() {
     const billetes1k = parseInt(montoARetirar / 1000);
 
     console.info(`El usuario retiró dinero exitosamente.`);
+    
+    usuarioEnSesion.saldo = usuarioEnSesion.saldo - montoIngresado;
+    saldoUsuarioEnSesion = usuarioEnSesion.saldo;
+
+    if(datosUsuarioEnSesion.antiguedad === "registrado") {
+      usuariosRegistrados[datosUsuarioEnSesion.indice] = usuarioEnSesion;
+      localStorage.setItem("usuariosRegistrados", JSON.stringify(usuariosRegistrados));
+    } else if(datosUsuarioEnSesion.antiguedad === "nuevo") {
+      usuariosNuevos[datosUsuarioEnSesion.indice] = usuarioEnSesion;
+      localStorage.setItem("usuariosNuevos", JSON.stringify(usuariosNuevos));
+    };
+    
     Swal.fire({
       title: "Retiro exitoso",
       icon: "success",
-      text: `Son: ${billetes20k} billete/s de $20 000, ${billetes10k} billete/s de $10 000, ${billetes2k} billete/s de $2 000, ${billetes1k} billete/s de $1 000.`
+      text: `Son: ${billetes20k} billete/s de $20 000, ${billetes10k} billete/s de $10 000, ${billetes2k} billete/s de $2 000, ${billetes1k} billete/s de $1 000.`,
+      showConfirmButton: true,
+      confirmButtonText: "Ver saldo"
+    }).then(result => {
+      if(result.isConfirmed) {
+        mostrarNuevoSaldo();
+      };
     });
   };
   

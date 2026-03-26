@@ -1,7 +1,10 @@
 localStorage.removeItem("datosUsuarioEnSesion");
 
-usuariosRegistrados = [];
-const usuariosNuevos = JSON.parse(localStorage.getItem("usuariosNuevos"));
+let usuariosRegistrados = [];
+let usuariosNuevos = JSON.parse(localStorage.getItem("usuariosNuevos"));
+if(usuariosNuevos === null) {
+  usuariosNuevos = [];
+};
 
 const botonIniciarSesion = document.querySelector("#iniciarSesion");
 botonIniciarSesion.disabled = true;
@@ -49,7 +52,7 @@ function verificarUsuario(dniIngresado, pinIngresado) {
 
   if(usuarioRVerificado !== undefined && usuarioNVerificado === undefined) {
     usuarioEnSesion.indice = usuariosRegistrados.indexOf(usuarioRVerificado);
-    usuarioEnSesion.antiguedad = "viejo";
+    usuarioEnSesion.antiguedad = "registrado";
     localStorage.setItem("datosUsuarioEnSesion", JSON.stringify(usuarioEnSesion));
     console.info(`El usuario ${usuarioRVerificado.dni} ya estaba registrado e ingresó correctamente al sistema.`);
     window.location.href = "./home.html";
