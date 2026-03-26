@@ -16,12 +16,28 @@ saludoHTML.innerText = `Hola, ${usuarioEnSesion.nombres}`;
 
 function retiroDeDinero() {
   function verificarDatosRetiro() {
-    if(monto.value === '' || isNaN(Number(monto.value)) || monto.value <= 0 || monto.value > saldoUsuarioEnSesion) {
+    if(monto.value === '') {
       console.warn(`El usuario escribió "${monto.value}" y no es un valor válido.`);
       Swal.fire({
         title: "Atención",
         icon: "warning",
         text: "El monto que ingresó no es válido. Por favor, ingrese un monto válido."
+      });
+      return false;
+    } else if(monto.value <= 0) {
+      console.warn(`El usuario escribió "${monto.value}" y no es un valor válido.`);
+      Swal.fire({
+        title: "Atención",
+        icon: "warning",
+        text: "El monto que ingresó no es válido. Por favor, ingrese un monto no negativo y distinto de cero."
+      });
+      return false;
+    } else if(monto.value > saldoUsuarioEnSesion) {
+      console.warn(`El usuario escribió "${monto.value}" y no tiene suficiente saldo.`);
+      Swal.fire({
+        title: "Atención",
+        icon: "warning",
+        text: "Saldo insuficiente. Por favor, ingrese otro monto."
       });
       return false;
     } else if(monto.value % 1000 !== 0) {
