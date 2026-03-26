@@ -1,8 +1,16 @@
 const saludoHTML = document.querySelector("#helloUser");
 const botonExtracciones = document.querySelector("#withdrawal");
 const botonSaldo = document.querySelector("#getBalance");
-const usuarioEnSesion = JSON.parse(localStorage.getItem("usuarioEnSesion"));
-const saldoUsuarioEnSesion = usuarioEnSesion.saldo;
+const usuariosRegistradosRecuperados = JSON.parse(localStorage.getItem("usuariosRegistrados"));
+const usuariosNuevosRecuperados = JSON.parse(localStorage.getItem("usuariosNuevos"));
+const datosUsuarioEnSesionRecuperados = JSON.parse(localStorage.getItem("datosUsuarioEnSesion"));
+let usuarioEnSesion = undefined;
+if(datosUsuarioEnSesionRecuperados.antiguedad === "viejo") {
+  usuarioEnSesion = usuariosRegistrados[datosUsuarioEnSesion.indice];
+} else if(datosUsuarioEnSesionRecuperados.antiguedad === "nuevo") {
+  usuarioEnSesion = usuariosNuevosRecuperados[datosUsuarioEnSesionRecuperados.indice];
+};
+let saldoUsuarioEnSesion = usuarioEnSesion.saldo;
 
 saludoHTML.innerText = `Hola, ${usuarioEnSesion.nombres}`;
 

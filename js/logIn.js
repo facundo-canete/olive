@@ -1,4 +1,4 @@
-localStorage.removeItem("usuarioEnSesion");
+localStorage.removeItem("datosUsuarioEnSesion");
 
 usuariosRegistrados = [];
 const usuariosNuevos = JSON.parse(localStorage.getItem("usuariosNuevos"));
@@ -40,11 +40,24 @@ async function conseguirLista() {
 conseguirLista();
 
 function verificarUsuario(dniIngresado, pinIngresado) {
-  const usuarioVerificado = (usuariosRegistrados.find(usuario => Number(usuario.dni) === Number(dniIngresado) && Number(usuario.pin) === Number(pinIngresado))) || (usuariosNuevos.find(usuario => Number(usuario.dni) === Number(dniIngresado) && Number(usuario.pin) === Number(pinIngresado)));
+  const usuarioRVerificado = usuariosRegistrados.find(usuarioR => Number(usuarioR.dni) === Number(dniIngresado) && Number(usuarioR.pin) === Number(pinIngresado));
+  const usuarioNVerificado = usuariosNuevos.find(usuarioN => Number(usuarioN.dni) === Number(dniIngresado) && Number(usuarioN.pin) === Number(pinIngresado));
+  let usuarioEnSesion = {
+    indice: undefined,
+    antiguedad: undefined
+  };
 
-  if(usuarioVerificado) {
-    localStorage.setItem("usuarioEnSesion", JSON.stringify(usuarioVerificado));
-    console.info(`El usuario ${usuarioVerificado.dni} ingresó correctamente al sistema.`)
+  if(usuarioRVerificado !== undefined && usuarioNVerificado === undefined) {
+    usuarioEnSesion.indice = usuariosRegistrados.indexOf(usuarioRVerificado);
+    usuarioEnSesion.antiguedad = "viejo";
+    localStorage.setItem("datosUsuarioEnSesion", JSON.stringify(usuarioEnSesion));
+    console.info(`El usuario ${usuarioRVerificado.dni} ya estaba registrado e ingresó correctamente al sistema.`);
+    window.location.href = "./home.html";
+  } else if(usuarioNVerificado !== undefined && usuarioRVerificado === undefined) {
+    usuarioEnSesion.indice = usuariosNuevos.indexOf(usuarioNVerificado);
+    usuarioEnSesion.antiguedad = "nuevo";
+    localStorage.setItem("datosUsuarioEnSesion", JSON.stringify(usuarioEnSesion));
+    console.info(`El usuario ${usuarioNVerificado.dni} es nuevo e ingresó correctamente al sistema.`);
     window.location.href = "./home.html";
   } else {
     console.warn("El usuario ingresó sus datos de manera incorrecta y no ingresa al sistema.");

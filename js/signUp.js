@@ -33,6 +33,8 @@ async function conseguirLista() {
 };
 
 conseguirLista();
+usuariosRegistrados = JSON.parse(localStorage.getItem("usuariosRegistrados"));
+usuariosNuevos = JSON.parse(localStorage.getItem("usuariosNuevos")) || [];
 
 const nombresUsuarioNuevo = document.querySelector("#nombres");
 const apellidosUsuarioNuevo = document.querySelector("#apellidos");
@@ -62,9 +64,7 @@ class Usuario {
     console.log(`Nombre/s: ${this.nombres} \nApellido/s: ${this.apellidos} \nEdad: ${this.edad} \nDNI: ${this.dni} \nEmail: ${this.email} \nPIN: ${this.pin} \nGénero: ${this.genero} \nSaldo: ${this.saldo}`);
   };
   revisarDuplicado() {
-    const usuariosRegistradosRecuperados = JSON.parse(localStorage.getItem("usuariosRegistrados"));
-    const usuariosNuevosRecuperados = JSON.parse(localStorage.getItem("usuariosNuevos"));
-    if(usuariosRegistradosRecuperados.some(usuarioRDuplicado => Number(usuarioRDuplicado.dni) === Number(this.dni)) || usuariosNuevosRecuperados.some(usuarioNDuplicado => Number(usuarioNDuplicado.dni) === Number(this.dni))) {
+    if(usuariosRegistrados.some(usuarioRDuplicado => Number(usuarioRDuplicado.dni) === Number(this.dni)) || usuariosNuevos.some(usuarioNDuplicado => Number(usuarioNDuplicado.dni) === Number(this.dni))) {
       console.warn(`El usuario escribió "${this.dni}" como DNI y ya se encuentra registrado.`);
       console.info(`Se redirecciona al usuario al inicio de sesión.`);
       Swal.fire({

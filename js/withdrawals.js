@@ -1,39 +1,44 @@
 const saludoHTML = document.querySelector("#helloUser");
-const usuarioEnSesion = JSON.parse(localStorage.getItem("usuarioEnSesion"));
+const usuariosRegistrados = JSON.parse(localStorage.getItem("usuariosRegistrados"));
+const usuariosNuevos = JSON.parse(localStorage.getItem("usuariosNuevos"));
+const datosUsuarioEnSesion = JSON.parse(localStorage.getItem("datosUsuarioEnSesion"));
+let usuarioEnSesion = {};
+if(datosUsuarioEnSesion.antiguedad === "viejo") {
+  usuarioEnSesion = usuariosRegistrados[datosUsuarioEnSesion.indice];
+} else if(datosUsuarioEnSesion.antiguedad === "nuevo") {
+  usuarioEnSesion = usuariosNuevos[datosUsuarioEnSesion.indice];
+};
 let saldoUsuarioEnSesion = usuarioEnSesion.saldo;
 const botonExtraer = document.querySelector("#withdraw");
+let monto = document.querySelector("#amount");
 
 saludoHTML.innerText = `Hola, ${usuarioEnSesion.nombres}`;
 
 function retiroDeDinero() {
-  function pedirDatosRetiro() {
-    const monto = document.querySelector("#amount");
-    if(typeof monto.value !== 'string' || monto.value === '' || isNaN(Number(monto.value)) || monto.value <= 0 || monto.value > saldoUsuarioEnSesion) {
+  function verificarDatosRetiro() {
+    if(monto.value === '' || isNaN(Number(monto.value)) || monto.value <= 0 || monto.value > saldoUsuarioEnSesion) {
       console.warn(`El usuario escribió "${monto.value}" y no es un valor válido.`);
       Swal.fire({
         title: "Atención",
         icon: "warning",
         text: "El monto que ingresó no es válido. Por favor, ingrese un monto válido."
       });
-    } else {
-      console.info(`El usuario ingresó el monto: ${monto.value}.`);
-      return monto.value;
-    };
-        
-  };
-    
-  const montoIngresado = pedirDatosRetiro(); // Va a tomar el valor "monto". Este va a ser el valor que se va a usar el función final de esta operación.
-    
-  if(montoIngresado % 1000 !== 0) {
-    console.warn(`El usuario ingresó un monto que el cajero no puede entregar.`);
-    Swal.fire({
+      return false;
+    } else if(monto.value % 1000 !== 0) {
+      console.warn(`El usuario ingresó un monto que el cajero no puede entregar.`);
+      Swal.fire({
         title: "Atención",
         icon: "warning",
         text: "Usted ingresó un monto que el cajero no puede entregar. Por favor revise el monto ingresado."
       });
-
-    montoIngresado = pedirDatosRetiro();
+      return false;
+    } else {
+      console.info(`El usuario ingresó el monto: ${monto.value}.`);
+      return monto.value;
+    };
   };
+  
+  let montoIngresado = verificarDatosRetiro(); // Va a tomar el valor "monto". Este va a ser el valor que se va a usar el función final de esta operación.
     
   function retirarDinero(montoARetirar) {
     const billetes20k = parseInt(montoARetirar / 20000);
@@ -49,13 +54,15 @@ function retiroDeDinero() {
 
     console.info(`El usuario retiró dinero exitosamente.`);
     Swal.fire({
-        title: "Retiro exitoso",
-        icon: "success",
-        text: `Son: ${billetes20k} billete/s de $20 000, ${billetes10k} billete/s de $10 000, ${billetes2k} billete/s de $2 000, ${billetes1k} billete/s de $1 000.`
-      });
-    };
-    
-  retirarDinero(montoIngresado);
+      title: "Retiro exitoso",
+      icon: "success",
+      text: `Son: ${billetes20k} billete/s de $20 000, ${billetes10k} billete/s de $10 000, ${billetes2k} billete/s de $2 000, ${billetes1k} billete/s de $1 000.`
+    });
+  };
+  
+  if(montoIngresado !== false) {
+    retirarDinero(montoIngresado);
+  };
 };
 
 botonExtraer.addEventListener("click", () => {
