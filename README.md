@@ -1,0 +1,3 @@
+# olive ATM
+
+olive ATM es un simulador de cajeros automáticos que usa una interfaz sencilla e intuitiva, con botones y campos de entrada de información. Usando eventos en JavaScript captura la interacción entre el usuario y el DOM, y procesa su solicitud, sea retirar dinero o simplemente ver su saldo. Para conseguir una lista de los usuarios registrados se usan funciones asincrónicas y se guardan en la memoria del navegador. En caso de existir un error en el fetch para la obtención de la lista de usuarios, se usa la sentencia throw para manejar el error y dar información tanto en el DOM como en la consola.
