@@ -51,25 +51,37 @@ html body main {
   height: 96vh;
 }
 
-html body main h1 {
+html body h1 {
   text-align: center;
+  font-size: 3em;
 }
-html body main .log-inputs {
-  height: 93vh;
+html body .log-inputs {
+  height: 90vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-html body main .log-inputs input {
+html body .log-inputs input {
   width: 40em;
+  height: 2em;
   margin-bottom: 1em;
+  font-size: 16px;
+  border-radius: 8px;
 }
-html body main .log-inputs select {
+html body .log-inputs select {
   width: 40em;
+  height: 2em;
+  font-size: 16px;
+  border-radius: 8px;
 }
-html body main .log-inputs input[type=submit] {
+html body .log-inputs input[type=submit] {
   margin-top: 1em;
+  background-color: #809766;
+  color: #35170d;
+}
+html body .log-inputs input[type=submit]:hover {
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=style.css.map */
