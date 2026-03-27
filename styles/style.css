@@ -17,7 +17,7 @@ html body main {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 5em;
+  gap: 10em;
 }
 html body main button {
   width: 25em;
@@ -81,6 +81,39 @@ html body .log-inputs input[type=submit] {
   color: #35170d;
 }
 html body .log-inputs input[type=submit]:hover {
+  cursor: pointer;
+}
+
+html body main .withdrawals {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 1em;
+}
+html body main .withdrawals h1 {
+  text-align: center;
+  font-size: 3em;
+  margin-bottom: 5em;
+}
+html body main .withdrawals section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+html body main .withdrawals input {
+  width: 40em;
+  height: 2em;
+  margin-bottom: 1em;
+  font-size: 16px;
+  border-radius: 8px;
+}
+html body main .withdrawals input[type=submit] {
+  margin-top: 1em;
+  background-color: #809766;
+  color: #35170d;
+}
+html body main .withdrawals input[type=submit]:hover {
   cursor: pointer;
 }
 

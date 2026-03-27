@@ -5,7 +5,7 @@ html {
   body {
     main {
       @include mixins.flex(row, center, center);
-      gap: 5em;
+      gap: 10em;
 
       button {
         width: 25em;

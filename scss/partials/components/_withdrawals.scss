@@ -1,0 +1,41 @@
+@use '../utilities/mixins';
+@use '../utilities/variables';
+
+html {
+  body {
+    main {
+      .withdrawals {
+        @include mixins.flex(column, flex-start);
+        gap: 1em;
+        
+        h1 {
+          text-align: center;
+          font-size: variables.$header-font-size;
+          margin-bottom: 5em;
+        };
+
+        section {
+          @include mixins.flex(column, center, center);
+        };
+
+        input {
+          width: 40em;
+          height: 2em;
+          margin-bottom: 1em;
+          font-size: variables.$inputs-font-size;
+          border-radius: 8px;
+        };
+
+        input[type="submit"] {
+          margin-top: 1em;
+          background-color: variables.$accent-primary;
+          color: variables.$accent-secondary;
+
+          &:hover {
+            cursor: pointer;
+          };
+        };
+      };
+    };
+  };
+};
